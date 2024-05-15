@@ -1,27 +1,26 @@
-import os, sys
-import time, datetime,string,textwrap
-
-from datetime import date, timedelta
+## Install program dependancies
 try:
-   
-    file = open("2020 Vision.txt","r")
-    lines = file.readlines()
-    import time
-    
+    import os, sys, time
+    import time, datetime,string,textwrap
+    from datetime import date, timedelta    
     from imdb import Cinemagoer
     from itertools import islice
     from datetime import date
     from datetime import datetime
     from numpy import right_shift
-except (FileNotFoundError,ModuleNotFoundError):
+except ModuleNotFoundError:
+    print("You must install the dependancies in order to continue, make sure you are using python v-3.10.7")
+
+## Try opening the data file, if one doesn't exist then create one in the correct format
+try:
+    file = open("2020 Vision.txt","r")
+    lines = file.readlines()
+except FileNotFoundError:
     print("A list has not been found")
     print("Would you like to one? (Y/N)")
     INPUT = input()
     if INPUT == "Y" or "y":
-        os.system('pip install imdbpy')
-        os.system('pip install numpy')
-        os.system('pip install itertools')
-        os.system('pip install matplotlib')
+        
         file = open("2020 Vision.txt","w+")
         print("A list has not been found so one has been created")
         print("A textfile has been created in the same folder as this program")

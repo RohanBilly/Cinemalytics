@@ -1,9 +1,8 @@
-import time, datetime,string,textwrap
-
+##Import program dependancies
+import time, datetime, string, textwrap, os, random
 from datetime import date, timedelta
-#from datetime import datetime
 from numpy import little_endian
-import os, random
+
 try:
     file = open("My_Data.txt","r")
     my_data_lines = file.readlines()
