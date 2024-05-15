@@ -11,6 +11,7 @@ try:
 except ModuleNotFoundError:
     print("You must install the dependancies in order to continue, make sure you are using python v-3.10.7")
 
+
 ## Try opening the data file, if one doesn't exist then create one in the correct format
 try:
     file = open("2020 Vision.txt","r")
@@ -20,7 +21,6 @@ except FileNotFoundError:
     print("Would you like to one? (Y/N)")
     INPUT = input()
     if INPUT == "Y" or "y":
-        
         file = open("2020 Vision.txt","w+")
         print("A list has not been found so one has been created")
         print("A textfile has been created in the same folder as this program")
@@ -77,7 +77,7 @@ except FileNotFoundError:
         sys.exit()
 
     
-
+## Creates a backup datafile
 def MakeBackup():
     if len(OutPutLines) > 10:
         BackupFile = open("2020 Vision Backup.txt","w+")
@@ -100,7 +100,9 @@ def CountList():
     EndOfList = n
 
 
-
+## Adds a newly added film to the ranked list
+## Using bubble sort, the user ranks the films until 
+## its position in the list have been found
 def SortList():
     AlreadyCompared = []
     Sorted = False
@@ -135,7 +137,7 @@ def SortList():
             Sorted = True
 
 
-
+## Updates the data file with new data
 def CreateLines():
     lines = []
     lines.append("    FILMS SEEN")
@@ -211,7 +213,7 @@ def CreateLines():
     return lines
 
 
-
+## Defines the Film class
 class Film:
     def __init__(self,title,cast,runtime,dateWatched,ID):
         self.title = title
@@ -221,7 +223,7 @@ class Film:
         self.ID = ID
 
 
-
+## Reads the data file and creates instances of the film class for each film
 def CreateFilmObjects():
     FilmObjects = []
     for i in range (0,len(ChronilogicalOrder)):
@@ -229,23 +231,7 @@ def CreateFilmObjects():
     return FilmObjects
 
 
-
-def GetRunTime():
-    n= 0
-    Checked = 0
-    while Checked == 0:
-        if lines[n].find("RUNTIME") != -1:
-            Checked = 1
-        else:
-            n += 1
-    RunTime = lines[n+1].rstrip("\n")
-    if Checked == 0:
-        RunTime = 0
-    #print("RUNTIME IS ",RunTime)
-    return RunTime
-
-
-
+## Fetches the date of entry for each film
 def GetDates():
     global DateList
     n = 0
@@ -270,6 +256,7 @@ def GetDates():
     return DateList
 
 
+## Fetches the runtimes of all films in the data file
 def GetRuntimes():
     global RunTimes
     n = 0
@@ -294,7 +281,7 @@ def GetRuntimes():
     return RunTimes
 
 
-
+## Fetches the ID values for each film
 def GetIDs():
     global IDList
     IDList = []
@@ -315,6 +302,8 @@ def GetIDs():
             x = x+1
     return IDList
 
+
+## Fetches the ratings for each film
 def GetRatings():
     global Ratings
     Ratings = []
@@ -336,6 +325,7 @@ def GetRatings():
     return Ratings
 
 
+## Fetches the view count for each film
 def GetViewCount():
     global ViewCount
     ViewCount = []
@@ -357,6 +347,7 @@ def GetViewCount():
     return ViewCount
 
 
+## Fetches the composers for each film
 def GetComposers():
     global Composers
     Composers = []
@@ -377,6 +368,8 @@ def GetComposers():
             x = x+1
     return Composers
 
+
+## Fetches the release years for each film
 def GetReleaseYears():
     global releaseYear
     releaseYear = []
@@ -397,7 +390,7 @@ def GetReleaseYears():
             x = x+1
     return releaseYear
 
-
+## Fetches the watchlist from the data file
 def GetWatchList():
     ChronilogicalOrder = []
     if len(ListOfFilms) > 1:
@@ -411,7 +404,7 @@ def GetWatchList():
     return ChronilogicalOrder
 
 
-
+## Fetches the ranked list of films from the data file
 def GetRankedList():
     ListOfFilms = []
     n= 0
@@ -435,7 +428,7 @@ def GetRankedList():
     return ListOfFilms
 
 
-
+## Applies changes to the data file
 def EditTextFile():
     FileWrite = open("2020 Vision.txt","w")
     for line in OutPutLines:
@@ -444,7 +437,7 @@ def EditTextFile():
     FileWrite.close()
 
 
-
+## Shows the menu options in the command line
 def DisplayMenu():
     global RunTime
     time.sleep(0.01)
@@ -832,11 +825,7 @@ def DisplayMenu():
             DisplayMenu()
 
 
-
-
-
-
-
+## Displays the films in a table sorted by their release years
 def TopFilmsByYear():
     print("Which Year?")
     choice = input()
@@ -879,6 +868,7 @@ def TopFilmsByYear():
         print("You haven't seen any films from this year.")
 
 
+## Displays the films in a table sorted by their genres
 def TopFilmsByGenre():
     print("Which Genre?")
     choice = input()
@@ -920,6 +910,7 @@ def TopFilmsByGenre():
         print("nope")
         
 
+## Shows all the films with a inputted composer
 def FindComposerFilms():
     print("Which Composer?")
     search = input()
@@ -943,43 +934,7 @@ def FindComposerFilms():
                 index2 = index2 + 1
 
 
-
-
-def SortList():
-    AlreadyCompared = []
-    Sorted = False
-    while Sorted == False:
-        SortCount = 0
-        for i in range (0,len(ListOfFilms)-2):
-            Pass = 0
-            for b in range (0,len(AlreadyCompared)):
-                if (AlreadyCompared[b].find(ListOfFilms[i]) != -1) and (AlreadyCompared[b].find(ListOfFilms[i+1]) != -1):
-                    print("pass",ListOfFilms[i],ListOfFilms[i+1])
-                    SortCount = SortCount + 1
-                    Pass = 1
-            if Pass == 0:
-                print("What is better? \n1        ",ListOfFilms[i],"\n2        ",ListOfFilms[i+1])
-                ValidInput = False
-                while ValidInput == False:
-                    Choice = input()
-                    if Choice == "2" or Choice == "1":
-                        ValidInput = True
-                    else:
-                        print("What is better? \n1        ",ListOfFilms[i],"\n2        ",ListOfFilms[i+1])
-                if Choice == "2":
-                    ComparedString = (ListOfFilms[i+1] + " and " + ListOfFilms[i])
-                    AlreadyCompared.append(ComparedString)
-                    Buffer = ListOfFilms[i+1]
-                    ListOfFilms[i+1] = ListOfFilms[i]
-                    ListOfFilms[i] = Buffer
-                elif Choice == "1":
-                    ComparedString = (ListOfFilms[i] + " and " + ListOfFilms[i+1])
-                    AlreadyCompared.append(ComparedString)
-        if SortCount > len(ListOfFilms)-4:
-            Sorted = True
-
-
-
+## Shows the options for graphing data
 def Graph():
     print("\n")
     print("1"+("NUMBER OF FILMS / TIME").rjust(40,"-"))
@@ -1076,7 +1031,7 @@ def Graph():
         plt.show()
 
 
-
+## Displays the films in a table in order of release year 
 def ByReleaseYear():
     FilmWithDate = {}
     dateIndex = 0
@@ -1096,6 +1051,7 @@ def ByReleaseYear():
     print("\n")
 
 
+## Displays the films in a table in order of view count
 def ByViewCount():
     FilmWithViewCount = {}
     viewIndex = 0
@@ -1117,6 +1073,7 @@ def ByViewCount():
     print("\n")
 
 
+## Displays the films in a table in order of rating
 def ByRating():
     FilmWithRating = {}
     RatingIndex = 0
@@ -1135,11 +1092,10 @@ def ByRating():
         print(String %((str(SortedDict[i][1])+":"),SortedDict[i][0]))
     print("\n")
 
-
+## Shows all the films with a particular actor in it
 def FindNumberOfActorFilms(Actor):
     print("Films with "+Actor+":")
     print("\n")
-
 
     ChronicList = []
     ChronicCast = []
@@ -1185,7 +1141,8 @@ def FindNumberOfActorFilms(Actor):
 
     print("\n")
 
-            
+
+## Finds the most frequent 40 actors and directors    
 def FindTopActorsAndDirectors():
     global FilmCast
     Directors = {}
@@ -1255,6 +1212,8 @@ def FindTopActorsAndDirectors():
         time.sleep(0.01)
     print("\n")
 
+
+## Experimental algorithym to find your favourite actor
 def ActorAlgorithm():
     global FilmCast
     Directors = {}
@@ -1452,12 +1411,7 @@ def ActorAlgorithm():
     print("\n")
 
 
-
-
-
-
-
-
+## Adds a film into the ranked list using bubble sort
 def FilmRankedInsertion(Film,RankedListSub):
     PositionFound = False
     SubList = list(RankedListSub)
@@ -1525,7 +1479,7 @@ def FilmRankedInsertion(Film,RankedListSub):
         ListOfFilms.insert((ListOfFilms.index(FilmReference))+1,Film)
         
             
-                    
+## Shows the chronilogical and ranked list of films with dates                 
 def DisplayData():
     MaxStringLength = 0
     for film in ListOfFilms:
@@ -1542,6 +1496,7 @@ def DisplayData():
         print(String %((str(i+1)+":"),ChronilogicalOrder[i],DateList[i], ListOfFilms[i]))
 
 
+## Secret function to show just 20 films
 def DisplayDataShort():
     MaxStringLength = 0
     for film in ListOfFilms:
@@ -1558,7 +1513,7 @@ def DisplayDataShort():
         print(String %((str(i+1)+":"),ChronilogicalOrder[i],DateList[i]))
 
 
-
+## Finds the data on a film from the imdb database
 def GetMovieInfo(film):
     global RunTime
     global FilmCast
@@ -1658,7 +1613,7 @@ def GetMovieInfo(film):
     return (movie["title"],id,MovieRunTime,Rating,Year,Composer)
     
 
-
+## Sorts a dictionary by its values
 def SortDict(Dict):
     DictValues = list(Dict.values())
     Top10 = []
@@ -1678,6 +1633,8 @@ def SortDict(Dict):
                 break
         Top10.append(x)
     return Top10
+
+
 
 def SortDict50(Dict):
     DictValues = list(Dict.values())
@@ -1701,7 +1658,7 @@ def SortDict50(Dict):
 
 
 
-
+## Debugging function that gets a movie name by its ID
 def TranslateID():
     print(ChronilogicalOrder)
     MovieDB = imdb.IMDb()
@@ -1714,7 +1671,7 @@ def TranslateID():
         x = x +1
 
 
-
+## Gets a film ID by its name 
 def GetID():
     MovieDB = imdb.IMDb()
     Film = "Project Power"
@@ -1737,7 +1694,7 @@ def GetID():
         print(id)
 
 
-
+## Creates the dictionary of the cast for each film
 def GetFilmCast():
     FilmCast = {}
     n = 0
@@ -1765,7 +1722,7 @@ def GetFilmCast():
     return FilmCast
 
 
-
+## Creates the dictionary of film genres
 def GetFilmGenres():
     Genres = {}
     n = 0
@@ -2008,18 +1965,16 @@ def CreateDatedList():
         Ratings.append(movie["rating"])
 
 
+## -----START-----
+
+## gets the data from the text file
 DateList = GetDates()
 RunTimes = GetRuntimes()
 IDList = GetIDs()
 ViewCount = GetViewCount()
-
-
 Ratings = GetRatings()
 releaseYear = GetReleaseYears()
 Composers = GetComposers()
-
-#CreateDatedList()
-#RunTime = RUNTIME(RunTime)
 global FilmCast
 FilmCast = GetFilmCast()
 values = (FilmCast.values())
@@ -2028,10 +1983,15 @@ ListOfFilms = GetRankedList()
 ChronilogicalOrder = GetWatchList()
 global Genres
 Genres = GetFilmGenres()
+
+
+
 OutPutLines = CreateLines()
 MakeBackup()
-#FilmObjects = CreateFilmObjects()
 DisplayMenu()
+
+
+## Writes new data into the text file
 OutPutLines = CreateLines()
 EditTextFile()
 
