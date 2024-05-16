@@ -47,8 +47,13 @@ Some data such as entry dates can be graphed to show your watching habbits over 
 ![graph](https://github.com/RohanBilly/Cinemalytics/assets/92380601/d4732f99-e366-4f30-8788-204754bf664f)
 
 
+## It's down to you!
+I've uploaded my data file if you want to explore the program with a filled database (2020Vision.txt). I'd recomend deleting this file when you understand how it works to start building your own database.
+
 There are so many cool things you can discover, I'll let you explore and find them yourself.
 
+
+If you have any issues, reach me at <strong>rohanvansanden@live.co.uk</strong> 
 
 
 
