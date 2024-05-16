@@ -11,7 +11,7 @@ Here came the idea for Cinemalytics, a place where you can keep a list of films 
 So you can get intricate data on your watching habbits.
 
 ## How does it work?
-Using the [**Cinemagoer** (formerly IMDBpy)]([https://pages.github.com/](https://cinemagoer.readthedocs.io/en/latest/)) Python module, Cinemalytics can fetch all relevant data on films. 
+Using the [**Cinemagoer** (formerly IMDBpy)](https://cinemagoer.readthedocs.io/en/latest/) Python module, Cinemalytics can fetch all relevant data on films. 
 Such as:
 - Cast
 - Composer(s)
@@ -21,6 +21,38 @@ Such as:
 - Runtimes
 - IMDb rating
 
+On top of this, more data is recorded on film entry like:
+- Personal film ranking
+- Date of entry
+- Number of times watched 
 
-### Chronilogical Film List 
-Each time you add a film you will be asked a series of comparison
+All this data is stored in a datafile: 2020Vision.txt
+
+## How to use
+This program is based in the command-line, you will be prompted with menu options.
+![Menu](https://github.com/RohanBilly/Cinemalytics/assets/92380601/be4f8417-2ec2-49d9-897e-1eca79d92ee9)
+
+# Chronilogical and ranked list
+As you add films, you'll build two lists:
+![lists](https://github.com/RohanBilly/Cinemalytics/assets/92380601/bd38b01a-dfcd-47de-96f7-32e93ac18ce5)
+- Your chronilogical list of films (sorted by the dates of entry)
+- Your ranked list (sorted by your personal preference)
+
+# Actors and Directors
+The actors and directors of every film you watch are saved. So you can see your most frequent actors and directors.
+![actor dir](https://github.com/RohanBilly/Cinemalytics/assets/92380601/eb8a478b-77cd-4949-8c99-e3e93890e1e2)
+
+# Graphs
+Some data such as entry dates can be graphed to show your watching habbits over time.
+![graph](https://github.com/RohanBilly/Cinemalytics/assets/92380601/d4732f99-e366-4f30-8788-204754bf664f)
+
+
+There are so many cool things you can discover, I'll let you explore and find them yourself.
+
+
+
+
+
+
+
+
