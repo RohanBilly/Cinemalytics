@@ -10,6 +10,13 @@ During lockdown I became quite obsessed with watching new films, with the sheer 
 Here came the idea for Cinemalytics, a place where you can keep a list of films you watch that stores every detail of each film. 
 So you can get intricate data on your watching habbits.
 
+## Requirements
+Due to updates to the cinemagoer package, this must be run on python verison 3.10
+
+You need to install these packages from the command prompt to run the code:
+```
+pip install cinemagoer matplotlib numpy
+```
 ## How does it work?
 Using the [**Cinemagoer** (formerly IMDBpy)](https://cinemagoer.readthedocs.io/en/latest/) Python module, Cinemalytics can fetch all relevant data on films. 
 Such as:
